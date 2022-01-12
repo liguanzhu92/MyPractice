@@ -16,8 +16,4 @@ class ArticleRemoteSource(private val newsApi: NewsApi, private val ioDispatcher
             newsApi.fetchLatestNews()
         }
 
-    fun getSecond() {
-        newsApi.fetchNews()
-    }
-
 }

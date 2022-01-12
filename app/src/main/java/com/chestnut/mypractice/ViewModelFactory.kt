@@ -3,6 +3,7 @@ package com.chestnut.mypractice
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.chestnut.mypractice.PracticeApplication.Companion.applicationScope
+import com.chestnut.mypractice.api.ApiFactory
 import com.chestnut.mypractice.api.NewsApiImpl
 import com.chestnut.mypractice.data.ArticleRemoteSource
 import com.chestnut.mypractice.data.ArticleRepository
@@ -17,7 +18,7 @@ class ViewModelFactory() : ViewModelProvider.Factory {
     ) = with(modelClass) {
         when {
             isAssignableFrom(MainViewModel::class.java) ->
-                MainViewModel(ArticleRepository(ArticleRemoteSource(NewsApiImpl(), Dispatchers.Default), applicationScope))
+                MainViewModel(ArticleRepository(ArticleRemoteSource(ApiFactory.instance, Dispatchers.Default), applicationScope))
             else ->
                 throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
         }

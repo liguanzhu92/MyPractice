@@ -15,10 +15,6 @@ class ArticleRepository(
     // Cache of the latest news got from the network.
     private var latestNews: List<Article> = emptyList()
 
-    fun getSecond() {
-        remoteSource.getSecond()
-    }
-
     suspend fun getLatestNews(refresh: Boolean = false): List<Article> {
         return if (refresh) {
             externalScope.async {
